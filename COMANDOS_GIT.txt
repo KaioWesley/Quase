@@ -1,0 +1,25 @@
+//Inicia um repositorio vazio
+git init
+
+//Adiciona arquivos ao container
+git add . 
+
+//Faz o commit do containner
+git commit -m "comentario"
+
+//Linkar a um respositorio remoto
+git remote add origin [LINK DO REPO]
+
+
+//Configurar proxy
+git config --local http.proxy http://kotlin:senai127@10.107.132.7:3129
+
+
+//Enviar o containner pro servidor
+git push origin master
+
+
+//Pegar as atualizações do servidor
+git pull origin master
+
+
