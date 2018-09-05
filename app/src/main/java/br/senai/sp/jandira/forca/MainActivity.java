@@ -29,14 +29,37 @@ public class MainActivity extends AppCompatActivity {
         //ANIMAIS
             "COBRA",
             "COALA",
-            "AGUIA"
+            "AGUIA",
+            "PASSARINHO",
+            "TUCANO",
+            "URSO",
+            "LOBO",
+            "TIGRE",
+            "LIGRE",
+            "HUMANO"
     },{ //FILMES
             "CINDERELA",
             "FROZEN",
+            "MATRIX",
+            "AMANHECER",
+            "ORDET",
+            "ANABELLE",
+            "AVATAR",
+            "ALLADIN",
+            "CARROS",
+            "CLICK"
+
     },{ //CIDADES
             "ITAPEVI",
             "BARUERI",
             "CARAGUATATUBA",
+            "CARAGUAQUECETUBA",
+            "CARAPICUIBA",
+            "OSASCO",
+            "UBERLANDIA",
+            "CURITIBA",
+            "SALVADOR",
+            "CARAPICUIBA"
     },{ //FRUTAS
             "BANANA",
             "LARANJA",
