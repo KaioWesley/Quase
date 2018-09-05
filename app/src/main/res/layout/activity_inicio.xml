@@ -4,24 +4,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/cinza"
+    android:background="@color/verde"
     >
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@color/preto"
         android:text="Jogo da Forca"
-        android:textSize="40dp"
         android:textAlignment="center"
-        android:textColor="@color/branco"
-        android:layout_marginBottom="50dp"
-        />
+        android:textColor="@color/verde"
+        android:textSize="40dp" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/ph"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="25dp"
+
         />
 
     <Button
@@ -31,7 +32,8 @@
         android:textSize="20dp"
         android:onClick="iniciarJogo"
         android:background="@color/preto"
-        android:textColor="@color/branco"
+        android:textColor="@color/verde"
+        android:layout_marginTop="45dp"
         />
 
 </LinearLayout>
