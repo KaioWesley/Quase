@@ -3,6 +3,7 @@ package br.senai.sp.jandira.forca;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,11 +20,13 @@ public class MainActivity extends AppCompatActivity {
     TextView txtCategoria;
     String palavra = "";
 
+    MediaPlayer mediaPlayer;
+
     static final  String categorias[] = {
             "ANIMAL",
             "FILMES",
             "CIDADES",
-            "FRUTA"
+            "COMIDA"
     };
     static final String[][] palavras = {{
         //ANIMAIS
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             "CINDERELA",
             "FROZEN",
             "MATRIX",
-            "AMANHECER",
+            "RAMBO",
             "ORDET",
             "ANABELLE",
             "AVATAR",
@@ -60,18 +63,26 @@ public class MainActivity extends AppCompatActivity {
             "CURITIBA",
             "SALVADOR",
             "CARAPICUIBA"
-    },{ //FRUTAS
-            "BANANA",
-            "LARANJA",
-            "MARACUJA",
-            "UVA"
+    },{ //COMIDA
+            "STROGONOFF",
+            "COXA",
+            "PERNIL",
+            "ESFIHA",
+            "BOLO",
+            "COXINHA",
+            "PAMONHA",
+            "PIZZA",
+            "CALABRESA",
+            "GALINHA",
+
+
     }
     };
 
     static final int VITORIA = 0;
     static final int DERROTA = 1;
 
-    int numeroCategoria = escolherCategoria();
+    int numeroCategoria = Categoria();
     String categoriaEscolhida = categorias[numeroCategoria];
     String palavraEscolhida = escolherPalavra(numeroCategoria);
 
@@ -94,6 +105,9 @@ public class MainActivity extends AppCompatActivity {
 
         txtCategoria.setText(categoriaEscolhida);
 
+        mediaPlayer = MediaPlayer.create(this, R.raw.instinct);
+        mediaPlayer.start();
+
         for(int i=0; i <= palavraEscolhida.length() - 1; i++){
             if(i == palavraEscolhida.length() - 1){
                 palavra += "_";
@@ -103,11 +117,12 @@ public class MainActivity extends AppCompatActivity {
         }
         txtPalavra.setText(palavra);
 
-        atualizarQuantidaDeAcertos();
-        atualizarQuantidaDeErros();
+        atualizarAcertos();
+        atualizarErros();
+
     }
 
-    public void acaobotao(View v) {
+    public void acao(View v) {
         char letraEscolhida = v.getTag().toString().charAt(0);
         v.setEnabled(false);
 
@@ -126,10 +141,10 @@ public class MainActivity extends AppCompatActivity {
         if(erro){
             v.setBackgroundColor(getResources().getColor(R.color.desativadovermelho));
             quantidaDeErros += 1;
-            atualizarQuantidaDeErros();
+            atualizarErros();
         }else{
             v.setBackgroundColor(getResources().getColor(R.color.desativadoverde));
-            atualizarQuantidaDeAcertos();
+            atualizarAcertos();
         }
         if(quantidaDeErros >= errosTotal){
             gameOver(DERROTA);
@@ -169,16 +184,16 @@ public class MainActivity extends AppCompatActivity {
         alert.create().show();
     }
 
-    private void atualizarQuantidaDeAcertos(){
+    private void atualizarAcertos(){
         txtAcerto.setText("Acertos: " + quantidaDeAcertos);
     }
 
-    private void atualizarQuantidaDeErros(){
+    private void atualizarErros(){
         txtErro.setText("Erros: " + quantidaDeErros + "/" + errosTotal);
     }
 
 
-    private int escolherCategoria(){
+    private int Categoria(){
         int min = 0;
         int max = categorias.length - 1;
 
@@ -194,8 +209,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, InicioActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    protected void onResume() {
+        super.onResume();
+        if(!mediaPlayer.isPlaying()){
+            mediaPlayer.start();}
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //pausar a musica
+        mediaPlayer.pause();
     }
 }
